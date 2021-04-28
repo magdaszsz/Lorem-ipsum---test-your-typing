@@ -1,35 +1,49 @@
-const userInput = document.querySelector("input");
+const userInput = document.querySelector("textarea");
 const loremDiv = document.querySelector(".lorem");
-const mistakes = document.querySelector(".mistake-count");
-const outLet = [];
+const mistakes = document.querySelector(".mistake-number");
+const end = document.querySelector(".ending-btn");
+const stats = document.querySelector(".stats");
+const time = document.querySelector(".stats__time");
+const numOfMistakes = document.querySelector(".stats__number");
+const rate = document.querySelector(".stats__rate");
 let mist = 0;
 let count = 0;
 let spans = [];
+let startingTime;
+let endingTime;
+let elapsedTime;
 mistakes.textContent = mist;
 
 const texts = [
   {
-    textLong:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores placeat laborum illum sint reprehenderit dolor voluptas rerum veniam corporis voluptates vel earum corrupti ducimus quas, maxime, autem cumque? Fugit est nesciunt, odit quo, rem sapiente a maiores quia itaque laudantium facere voluptate accusamus ratione quas eius esse expedita veniam, voluptatem magni totam consequatur. Aliquid ab eum accusamus, delectus provident quis beatae officia ad omnis repudiandae fugiat temporibus iste deleniti exercitationem consectetur illum reiciendis esse veritatis! Quae aliquam animi veniam beatae, eius explicabo maiores facilis soluta voluptatum dolorum tempora consequatur, nulla culpa iure nostrum, eos placeat odit! Sunt ut nesciunt, veritatis, odit rem mollitia nobis error dolorem, quibusdam possimus saepe. Repudiandae deserunt enim nihil! Impedit, ipsa magnam deserunt a quis voluptatibus, vel maiores fugit, eos soluta sint odit illo delectus distinctio vero accusamus eaque tempore consequatur nihil beatae! Nihil, ratione officia possimus sequi minima dolorem odio sed! Labore repellendus, exercitationem corporis maiores atque cumque aliquam tempora libero necessitatibus consequuntur, assumenda inventore cupiditate porro earum delectus vel! Dignissimos consequuntur dolor sunt dolore, consectetur pariatur praesentium libero veniam nesciunt, distinctio illum. Eos placeat numquam non odit doloribus velit? Expedita sit mollitia minus quae fugit? Distinctio tempore possimus voluptates ex aliquid itaque, voluptate vero, consectetur ipsa dolorem perspiciatis rerum nisi nihil dolore placeat accusantium vel a? Repudiandae amet veritatis ipsum, ipsam cum reprehenderit ea, quo perferendis saepe voluptatem dolorum dicta accusantium nemo rem nam dolore ratione obcaecati, assumenda et vero ex optio nihil error? Debitis nostrum quas harum. Velit, sint! Porro possimus doloribus nulla, natus facere excepturi! Corrupti ipsa, sit veritatis placeat beatae aliquid eius numquam officiis fugit hic ab, minus assumenda esse dolor nam dolorem, ipsam quaerat est dolores quos repellendus adipisci sunt ullam. Excepturi libero illo saepe dolor officia hic! Deserunt mollitia eaque iusto omnis at, ratione explicabo exercitationem sint similique! Maxime alias, minima praesentium velit rem voluptates accusantium distinctio explicabo, facere itaque architecto cupiditate enim aspernatur nulla ad eaque quo? Possimus inventore dolor fuga, illo cumque vitae fugit doloribus exercitationem quaerat tenetur voluptatibus commodi rerum earum recusandae mollitia doloremque totam consectetur quibusdam consequatur tempora, veniam repellat eligendi natus architecto! Dolores laboriosam officia tenetur veniam magnam velit in inventore deserunt quos culpa nostrum voluptatibus excepturi aut id vero explicabo, asperiores consequuntur architecto at necessitatibus beatae rem? Accusantium necessitatibus quo repellat! Illo, repudiandae perferendis magnam tenetur suscipit ipsa cupiditate excepturi sequi quasi modi. Quibusdam dolores cum atque placeat alias accusamus ex architecto tempore?",
+    short:
+      "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Consequatur deserunt non in, recusandae ad nulla officia laudantium harum minima adipisci corrupti dolore exercitationem doloribus aliquam. Minima alias rem enim soluta?",
   },
   {
-    textShort:
-      "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Consequatur deserunt non in, recusandae ad nulla officia laudantium harum minima adipisci corrupti dolore exercitationem doloribus aliquam. Minima alias rem enim soluta?",
+    medium:
+      "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Numquam praesentium suscipit a dolorum voluptatum minima repudiandae aliquam enim sit? Quod, similique dolor. Similique, modi quas animi deserunt magnam vel tenetur, eligendi atque quidem minus, sit autem dolorum omnis sapiente cumque provident et molestiae repellat. Assumenda possimus, est dolorum corrupti quis officiis nesciunt voluptatum aspernatur aut quos aliquid vero praesentium sed repellat commodi voluptatem modi! Ad itaque ea alias non aliquid ipsa asperiores voluptates beatae! Alias vero ab sunt inventore odit, at asperiores libero harum illo veritatis! Soluta recusandae possimus praesentium voluptatem illo natus, sunt nisi veritatis eligendi itaque voluptatibus molestias?",
+  },
+  {
+    long:
+      "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dicta doloribus recusandae perspiciatis, ut, maxime consequuntur iste amet doloremque quo reprehenderit rem cupiditate? Deleniti corporis, adipisci error non ea nobis libero eius. Nemo magnam, quis dolore corporis excepturi saepe tempora est minus doloribus sequi dolores voluptate, provident iusto amet atque et, cumque neque incidunt. Porro dicta accusamus earum tempore, harum odit provident perspiciatis numquam! Molestiae incidunt, quidem aspernatur quasi eligendi impedit minus neque illum excepturi suscipit quas tenetur, animi ad commodi sunt. Quia cum repellendus est beatae! Aspernatur fugit laboriosam totam veritatis quibusdam maiores! Libero tempora tenetur animi quo molestiae accusantium corporis sint eligendi modi eaque assumenda voluptates sit, ab facere nihil labore incidunt dolor porro odit unde architecto aliquam facilis fugit. Possimus debitis neque aperiam incidunt aliquam ducimus. Veniam deleniti accusantium doloribus non sed quibusdam voluptatibus eveniet perspiciatis fugiat illo, animi cumque ratione repellat expedita distinctio sunt dolorem natus ea?",
   },
 ];
 
-
 const output = document.querySelector(".output");
-const lorem = texts[1].textShort.split("");
+const lorem = texts[0].short.split("");
 //console.log(lorem) to jest prawidłowy tekst
 for (let el of lorem) {
   const span = document.createElement("span");
+  span.classList.add("letter");
   span.innerText = el;
   loremDiv.appendChild(span);
-  spans = document.querySelectorAll("span");
+  spans = document.querySelectorAll(".letter");
 }
 
 userInput.addEventListener("input", function () {
+  if(count === 0){
+    startingTime = performance.now();
+  }
   let userLetters = userInput.value.split("");
   if (userLetters[count] === spans[count].innerText) {
     spans[count].style.color = "green";
@@ -48,3 +62,28 @@ function preventBackspace(e) {
     e.preventDefault();
   }
 }
+
+function endGame(e) {
+  e.preventDefault();
+  //measureTime();
+  showStats();
+  userInput.value = "";
+  userInput.style.display = "none";
+  stats.style.display = "block";
+  setTimeout(function () {
+    stats.classList.add("show");
+  }, 400);
+}
+
+function showStats() {
+  numOfMistakes.innerText = mist;
+  time.innerText = (performance.now() - startingTime);
+  console.log(performance.now())
+}
+
+function measureTime() {
+  elapsedTime = (startingTime - endingTime) / 1000;
+  //return elapsedTime;
+}
+
+end.addEventListener("click", endGame);

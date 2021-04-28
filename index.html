@@ -1,19 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css">
-  <title>Document</title>
-</head>
-<body>
-  <main>
-  <div class="lorem"></div>
-  <input type="text">
-<div class="output"></div>
-<div class="mistake-count"></div>
-</main>
-<script src="script.js"></script>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital@0;1&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <header>
+      <h2 class="header__title">Lorem ipsum...</h2>
+      <div class="mistake-counter">
+        <p class="mistake-number">0</p><p>mistakes</p>
+      </div>
+      <div class="time-counter">
+        <p class="time-number">0</p><p class="time">seconds</p>
+      </div>
+    </header>
+    <main>
+      <div class="lorem"></div>
+      <!-- <input type="text"> -->
+      <label for="#textarea">
+        <textarea
+          id="textarea"
+          placeholder="Time starts when you start typing. You can't delete what you wrote and it's case sensitive. Good luck!"
+        ></textarea>
+      </label>
+      <div class="stats">
+        <p>You made <h3 class="stats__number"></h3>mistakes</p>
+        <p>It took you <h3 class="stats__time"></h3></p>
+        <p>Your mistake rate is<h3 class="stats__rate"></h3></p>
+      </div>
+
+      <button type="submit" class="ending-btn">Submit</button>
+    </main>
+    <script src="script.js"></script>
+  </body>
 </html>
