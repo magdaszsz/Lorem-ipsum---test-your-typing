@@ -1,0 +1,30 @@
+* {
+  box-sizing: border-box;
+}
+
+main {
+  height: 100vh;
+  width: 40%;
+  margin: 0 auto;
+  display: grid;
+  align-content: center;
+}
+
+.lorem {
+  padding: 2rem 0;
+  font-size: 1.7rem;
+}
+
+input {
+  all: initial;
+  border-radius: 20px;
+  border: 1px solid grey;
+  //box-shadow: 0 0 .5rem grey;
+  height: 2.2rem;
+  font-size: 1rem;
+  padding: .8rem;
+}
+
+input:focus {
+  box-shadow: 0 0 .5rem gray;
+}
