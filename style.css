@@ -9,29 +9,60 @@ body {
 }
 
 header {
-  background-color: #218c74;
-  //min-height: 20vh;
-  color: white;
+  //background-color: #218c74;
+  background-color: #ebebeb;
+  color: #0e2c50;
   display: flex;
-  align-items: center;
-  padding: 1em 0;
+  align-items: baseline;
+  padding: 1.5rem 0;
 }
 
 .header__title {
-  color: white;
   font-weight: normal;
   font-size: 3.2rem;
   margin-left: 2rem;
 }
 
+/* introduction */
+
+.introduction__container {
+  text-align: center;
+  color: #0e2c50;
+}
+
+.introduction__container h3,
+p {
+  font-size: 1.3rem;
+}
+
+.introduction__container p {
+  margin-top: 1rem;
+}
+
+.introduction__btns {
+  margin-top: 4rem;
+}
+
+button + button {
+  margin-top: 2rem;
+}
+
 button {
   all: initial;
-  background-color: #218c74;
+  //background-color: #1c558e;
+  background-color: #0e2c50;
   color: white;
-  border-radius: 3rem;
-  padding: .7rem 2.2rem;
+  border-radius: 1rem;
+  box-shadow: 0 0.2rem #2161ae;
+  transition: translate 0.5s ease-in;
+  padding: 0.7rem 2.2rem;
   font-size: 1.3rem;
   cursor: pointer;
+}
+
+button:hover {
+  transform: translate(0, 0.1rem);
+  box-shadow: 0 0.1rem #22a6b3;
 }
 
 p {
@@ -44,25 +75,40 @@ p {
 
 .mistake-counter,
 .time-counter {
-  width: 20%;
-  color: white;
-  justify-content: space-between;
+  padding: 1rem 2rem;
+  //border: 2px solid sandybrown;
+  align-self: baseline;
 }
 
 .mistake-number,
 .time-number {
   font-size: 6rem;
+  //border: 2px solid yellowgreen;
 }
 
 main {
   padding: 5rem 0;
-  width: 40%;
+  width: min(90%, 600px);
   margin: 0 auto;
+  //border: 2px solid cyan;
 }
 
 .lorem {
   padding: 2rem 0;
   font-size: 1.7rem;
+  color: #0e2c50;
+  text-align: center;
+}
+
+.lorem__container {
+  opacity: 0;
+  display: none;
+  transition: all 0.7s ease;
+}
+
+.lorem__container.show {
+  display: block;
+  opacity: 1;
 }
 
 /* input {
@@ -90,15 +136,28 @@ textarea {
   height: 15rem;
 }
 
+.ending-btn {
+  align-self: center;
+  margin: 1.5rem auto 0 auto;
+  display: block;
+}
+
+textarea.error {
+  border: 2px solid red;
+}
+
 textarea:focus {
   box-shadow: 0 0 0.5rem lightgrey;
   outline: none;
 }
 
 .stats {
-  background-color:  #218c74;
-  color: white;
-  height: 15rem;
+  //background-color: #0e2c50;
+  //color: white;
+  color: #0e2c50;
+  background-color: #ebebeb;
+  min-height: 15rem;
+  text-align: center;
   font-size: 2rem;
   width: 100%;
   border-radius: 10px;
@@ -106,6 +165,17 @@ textarea:focus {
   display: none;
   opacity: 0;
   transition: all 2s ease;
+}
+
+.stats > p {
+  font-size: 1.2rem;
+}
+
+.stats__number,
+.stats__time,
+.stats__rate {
+  font-size: 2rem;
+  margin-top: 1rem;
 }
 
 .stats.show {

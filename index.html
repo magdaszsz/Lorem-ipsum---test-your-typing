@@ -14,30 +14,36 @@
   </head>
   <body>
     <header>
-      <h2 class="header__title">Lorem ipsum...</h2>
-      <div class="mistake-counter">
-        <p class="mistake-number">0</p><p>mistakes</p>
-      </div>
-      <div class="time-counter">
-        <p class="time-number">0</p><p class="time">seconds</p>
-      </div>
+      <h2 class="header__title">Lorem, ipsum...</h2>
     </header>
     <main>
+      <div class="introduction__container">
+        <h3>Test your typing speed and accuracy with this classic text.
+        </h3>
+        <p>Choose the length of your sample and let's give it a go!</p>
+        <div class="introduction__btns">
+          <button id="short">Don't have time for this, let's keep it short</button>
+          <button id="medium">I don't have anything better to do but I'm also lazy</button>
+          <button id="long">I'm not doing anything interesting anyway. Let's do this!</button>
+        </div>
+      </div>
+      <div class="lorem__container">
       <div class="lorem"></div>
       <!-- <input type="text"> -->
       <label for="#textarea">
-        <textarea
-          id="textarea"
+        <textarea 
+          id="textarea" 
           placeholder="Time starts when you start typing. You can't delete what you wrote and it's case sensitive. Good luck!"
         ></textarea>
       </label>
       <div class="stats">
-        <p>You made <h3 class="stats__number"></h3>mistakes</p>
-        <p>It took you <h3 class="stats__time"></h3></p>
-        <p>Your mistake rate is<h3 class="stats__rate"></h3></p>
+        <p>You made <span class="stats__number"></span> mistakes</p>
+        <p>It took you <span class="stats__time"></span> seconds</p>
+        <p>Your typing rate is<br><span class="stats__rate"></span></p>
       </div>
 
       <button type="submit" class="ending-btn">Submit</button>
+      </div>
     </main>
     <script src="script.js"></script>
   </body>

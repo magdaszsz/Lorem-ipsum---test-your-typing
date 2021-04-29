@@ -1,18 +1,19 @@
 const userInput = document.querySelector("textarea");
 const loremDiv = document.querySelector(".lorem");
-const mistakes = document.querySelector(".mistake-number");
+const loremCon = document.querySelector('.lorem__container')
 const end = document.querySelector(".ending-btn");
 const stats = document.querySelector(".stats");
 const time = document.querySelector(".stats__time");
 const numOfMistakes = document.querySelector(".stats__number");
 const rate = document.querySelector(".stats__rate");
+const intro = document.querySelector('.introduction__container');
 let mist = 0;
 let count = 0;
 let spans = [];
 let startingTime;
 let endingTime;
 let elapsedTime;
-mistakes.textContent = mist;
+
 
 const texts = [
   {
@@ -30,7 +31,7 @@ const texts = [
 ];
 
 const output = document.querySelector(".output");
-const lorem = texts[0].short.split("");
+const lorem = texts[1].medium.split("");
 //console.log(lorem) to jest prawidłowy tekst
 for (let el of lorem) {
   const span = document.createElement("span");
@@ -41,6 +42,7 @@ for (let el of lorem) {
 }
 
 userInput.addEventListener("input", function () {
+  userInput.classList.remove('error')
   if(count === 0){
     startingTime = performance.now();
   }
@@ -53,6 +55,7 @@ userInput.addEventListener("input", function () {
   }
   count++;
   mistakes.textContent = mist;
+
 });
 
 userInput.addEventListener("keydown", preventBackspace);
@@ -64,20 +67,25 @@ function preventBackspace(e) {
 }
 
 function endGame(e) {
+  if(count > 0) {
   e.preventDefault();
   //measureTime();
   showStats();
   userInput.value = "";
   userInput.style.display = "none";
+  end.style.display = "none";
   stats.style.display = "block";
   setTimeout(function () {
     stats.classList.add("show");
   }, 400);
+} else {
+  userInput.classList.add('error')
+}
 }
 
 function showStats() {
   numOfMistakes.innerText = mist;
-  time.innerText = (performance.now() - startingTime);
+  time.innerText =((performance.now() - startingTime) / 1000).toFixed(1);
   console.log(performance.now())
 }
 
@@ -87,3 +95,21 @@ function measureTime() {
 }
 
 end.addEventListener("click", endGame);
+
+const introBtns = document.querySelectorAll('.introduction__btns > button');
+
+introBtns.forEach(btn => {
+  btn.addEventListener('click', function(e) {
+    const loremLength = e.target.getAttribute('id');
+    startGame(loremLength);
+    
+  })
+})
+
+function startGame(length) {
+  intro.style.display = "none";
+  loremCon.style.display = "block";
+  setInterval(function() {
+    loremCon.style.opacity = 1;
+  }, 400)
+}
