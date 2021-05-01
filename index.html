@@ -4,6 +4,11 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      src="https://kit.fontawesome.com/bf903a51f2.js"
+      crossorigin="anonymous"
+    ></script>
+
     <link rel="preconnect" href="https://fonts.gstatic.com" />
     <link
       href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital@0;1&display=swap"
@@ -16,33 +21,39 @@
     <header>
       <h2 class="header__title">Lorem, ipsum...</h2>
     </header>
-    <main>
-      <div class="introduction__container">
-        <h3>Test your typing speed and accuracy with this classic text.
-        </h3>
-        <p>Choose the length of your sample and let's give it a go!</p>
-        <div class="introduction__btns">
-          <button id="short">Don't have time for this, let's keep it short</button>
-          <button id="medium">I don't have anything better to do but I'm also lazy</button>
-          <button id="long">I'm not doing anything interesting anyway. Let's do this!</button>
-        </div>
-      </div>
-      <div class="lorem__container">
+    <div class="lorem__container">
       <div class="lorem"></div>
-      <!-- <input type="text"> -->
       <label for="#textarea">
-        <textarea 
-          id="textarea" 
+        <textarea
+          id="textarea"
           placeholder="Time starts when you start typing. You can't delete what you wrote and it's case sensitive. Good luck!"
         ></textarea>
       </label>
       <div class="stats">
         <p>You made <span class="stats__number"></span> mistakes</p>
         <p>It took you <span class="stats__time"></span> seconds</p>
-        <p>Your typing rate is<br><span class="stats__rate"></span></p>
+        <!-- <p>Your typing rate is<br><span class="stats__rate"></span></p> -->
       </div>
-
+      <div class="btns__container">
+      <button class="back"><i class="fas fa-arrow-left"></i></button>
       <button type="submit" class="ending-btn">Submit</button>
+      </div>
+    </div>
+    <main>
+      <div class="introduction__container">
+        <h3>Test your typing speed and accuracy with this classic text.</h3>
+        <p>Choose the length of your sample and let's give it a go!</p>
+        <div class="introduction__btns">
+          <button id="short">
+            Don't have time for this, let's keep it short
+          </button>
+          <button id="medium">
+            I don't have anything better to do but I'm also lazy
+          </button>
+          <button id="long">
+            I'm not doing anything interesting anyway. Let's do this!
+          </button>
+        </div>
       </div>
     </main>
     <script src="script.js"></script>

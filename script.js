@@ -7,13 +7,14 @@ const time = document.querySelector(".stats__time");
 const numOfMistakes = document.querySelector(".stats__number");
 const rate = document.querySelector(".stats__rate");
 const intro = document.querySelector('.introduction__container');
+const header = document.querySelector('header');
+const backBtn = document.querySelector('.back')
 let mist = 0;
 let count = 0;
 let spans = [];
 let startingTime;
 let endingTime;
-let elapsedTime;
-
+let playing = true;
 
 const texts = [
   {
@@ -22,7 +23,7 @@ const texts = [
   },
   {
     medium:
-      "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Numquam praesentium suscipit a dolorum voluptatum minima repudiandae aliquam enim sit? Quod, similique dolor. Similique, modi quas animi deserunt magnam vel tenetur, eligendi atque quidem minus, sit autem dolorum omnis sapiente cumque provident et molestiae repellat. Assumenda possimus, est dolorum corrupti quis officiis nesciunt voluptatum aspernatur aut quos aliquid vero praesentium sed repellat commodi voluptatem modi! Ad itaque ea alias non aliquid ipsa asperiores voluptates beatae! Alias vero ab sunt inventore odit, at asperiores libero harum illo veritatis! Soluta recusandae possimus praesentium voluptatem illo natus, sunt nisi veritatis eligendi itaque voluptatibus molestias?",
+      "Lorem, ipsum dolor sit amet, consectetur adipisicing elit. Numquam praesentium suscipit a dolorum voluptatum minima repudiandae aliquam enim sit? Quod, similique dolor. Similique, modi quas animi deserunt magnam vel tenetur, eligendi atque quidem minus, sit autem dolorum omnis sapiente cumque provident et molestiae repellat. Assumenda possimus, est dolorum corrupti quis officiis nesciunt voluptatum aspernatur aut quos aliquid vero praesentium sed repellat commodi voluptatem modi! Ad itaque ea alias non aliquid ipsa asperiores voluptates beatae! Alias vero ab sunt inventore odit, at asperiores libero harum illo veritatis! Soluta recusandae possimus praesentium voluptatem illo natus, sunt nisi veritatis eligendi itaque voluptatibus molestias?",
   },
   {
     long:
@@ -31,21 +32,14 @@ const texts = [
 ];
 
 const output = document.querySelector(".output");
-const lorem = texts[1].medium.split("");
-//console.log(lorem) to jest prawidłowy tekst
-for (let el of lorem) {
-  const span = document.createElement("span");
-  span.classList.add("letter");
-  span.innerText = el;
-  loremDiv.appendChild(span);
-  spans = document.querySelectorAll(".letter");
-}
+
 
 userInput.addEventListener("input", function () {
   userInput.classList.remove('error')
   if(count === 0){
     startingTime = performance.now();
   }
+ 
   let userLetters = userInput.value.split("");
   if (userLetters[count] === spans[count].innerText) {
     spans[count].style.color = "green";
@@ -54,7 +48,6 @@ userInput.addEventListener("input", function () {
     mist++;
   }
   count++;
-  mistakes.textContent = mist;
 
 });
 
@@ -86,13 +79,9 @@ function endGame(e) {
 function showStats() {
   numOfMistakes.innerText = mist;
   time.innerText =((performance.now() - startingTime) / 1000).toFixed(1);
-  console.log(performance.now())
 }
 
-function measureTime() {
-  elapsedTime = (startingTime - endingTime) / 1000;
-  //return elapsedTime;
-}
+
 
 end.addEventListener("click", endGame);
 
@@ -107,9 +96,43 @@ introBtns.forEach(btn => {
 })
 
 function startGame(length) {
-  intro.style.display = "none";
-  loremCon.style.display = "block";
-  setInterval(function() {
-    loremCon.style.opacity = 1;
-  }, 400)
+  let version = '';
+  if(length === 'short'){
+    version = texts[0].short;
+  } else if(length === 'medium') {
+    version = texts[1].medium;
+    header.style.display = 'none';
+    loremDiv.style.maxWidth = '100%';
+    loremDiv.style.columnCount = 3;
+    loremDiv.style.columnWidth = "300px";
+  } else {
+    version = texts[2].long;
+    header.style.display = "none";
+    loremDiv.style.maxWidth = "100%";
+    loremDiv.style.columnCount = 3;
+    loremDiv.style.columnWidth = "300px";
+  }
+  
+
+  const lorem = version.split("");
+
+  for (let letter of lorem) {
+    const span = document.createElement("span");
+    span.classList.add("letter");
+    span.innerText = letter;
+    loremDiv.appendChild(span);
+    spans = document.querySelectorAll(".letter");
+  }
+    intro.style.display = "none";
+    loremCon.style.display = "block";
+    setInterval(function () {
+      loremCon.style.opacity = 1;
+    }, 400);
+    
 }
+
+function restart() {
+  location.reload();
+}
+
+backBtn.addEventListener('click', restart)
